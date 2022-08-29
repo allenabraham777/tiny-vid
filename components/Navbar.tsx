@@ -11,14 +11,14 @@ import { createOrGetUser } from "../utils";
 import useAuthStore from "../store/authStore";
 
 const Navbar = () => {
-  const { userProfile, addUser, removeUser } = useAuthStore();
+  const { userProfile, addUser, removeUser }: any = useAuthStore();
 
   const logout = () => {
     googleLogout();
     removeUser();
   };
   return (
-    <div className="sticky top-0 z-50 w-full flex justify-between items-center border-b-2 border-gray-200 py-2 px-4 bg-white">
+    <div className="w-full flex justify-between items-center border-b-2 border-gray-200 py-2 px-4 bg-white">
       <Link href="/">
         <div className="w-[100px] md:w-[130px]">
           <Image className="cursor-pointer" src={Logo} alt="TinyVid" />
