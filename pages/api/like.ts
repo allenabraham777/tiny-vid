@@ -22,7 +22,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     } else {
       data = await client
         .patch(postId)
-        .unset([`likes[ref=="${userId}"]`])
+        .unset([`likes[_ref=="${userId}"]`])
         .commit();
     }
 

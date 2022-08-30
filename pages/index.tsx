@@ -10,7 +10,6 @@ interface Props {
 }
 
 const Home = ({ videos }: Props) => {
-  console.log(videos);
   return (
     <div className="flex flex-col gap-10 videos h-full">
       {videos.length ? (
@@ -22,8 +21,18 @@ const Home = ({ videos }: Props) => {
   );
 };
 
-export const getServerSideProps = async () => {
-  const { data } = await axios.get(`${BASE_URL}/api/post`);
+export const getServerSideProps = async ({
+  query: { topic },
+}: {
+  query: { topic: string };
+}) => {
+  let url = "";
+  if (topic) {
+    url = `${BASE_URL}/api/discover/${topic}`;
+  } else {
+    url = `${BASE_URL}/api/post`;
+  }
+  const { data } = await axios.get(url);
   return {
     props: {
       videos: data,
